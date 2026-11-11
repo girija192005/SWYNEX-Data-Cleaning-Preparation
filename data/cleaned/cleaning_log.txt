@@ -1,0 +1,49 @@
+
+=== BEFORE CLEANING ===
+Shape: (891, 12)
+Missing values per column:
+Age         177
+Cabin       687
+Embarked      2
+Duplicate rows: 0
+Data types:
+PassengerId      int64
+Survived         int64
+Pclass           int64
+Name               str
+Sex                str
+Age            float64
+SibSp            int64
+Parch            int64
+Ticket             str
+Fare           float64
+Cabin              str
+Embarked           str
+
+Column names standardised to lowercase.
+Removed 0 duplicate records.
+Trimmed whitespace, lower-cased 'sex', expanded 'embarked' codes to port names.
+Extracted 'deck' from cabin and 'title' from name; merged rare titles into 'Other'.
+Embarked -> mode; Age -> median by (pclass, sex); deck -> 'Unknown'; raw cabin dropped (~77% missing).
+Cast survived->bool; pclass/sex/embarked/deck/title->category; fare->float.
+Fare outliers (>Q3+3*IQR) flagged but kept: 53
+
+=== AFTER CLEANING ===
+Shape: (891, 13)
+Missing values per column:
+Series([], )
+Duplicate rows: 0
+Data types:
+passengerid       int64
+survived           bool
+pclass         category
+name             string
+sex            category
+age             float64
+sibsp             int64
+parch             int64
+ticket           string
+fare            float64
+embarked       category
+deck           category
+title          category
